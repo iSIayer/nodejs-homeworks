@@ -7,6 +7,10 @@ const regEmail =
 
 const userSchema = new Schema(
   {
+    name: {
+      type: String,
+      required: [true, "Name is required"],
+    },
     password: {
       type: String,
       required: [true, "Password is required"],
@@ -38,6 +42,7 @@ userSchema.methods.comparePassword = function (password) {
 };
 
 const signupJoiSchema = Joi.object({
+  name: Joi.string().required(),
   password: Joi.string().min(6).required(),
   email: Joi.string().pattern(regEmail).required(),
   subscription: Joi.string().regex(/^(starter|pro|business)$/),
@@ -45,8 +50,8 @@ const signupJoiSchema = Joi.object({
 });
 
 const loginJoiSchema = Joi.object({
-  password: Joi.string().min(6).required(),
   email: Joi.string().pattern(regEmail).required(),
+  password: Joi.string().min(6).required(),
 });
 
 const subscriptionJoiSchema = Joi.object({
