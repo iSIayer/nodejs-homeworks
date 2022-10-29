@@ -10,15 +10,15 @@ const {
 } = require("../../models/user");
 
 router.post("/signup", validation(signupJoiSchema), ctrlWrapper(ctrl.register));
-router.post("/login", validation(loginJoiSchema), ctrlWrapper(ctrl.register));
+router.post("/login", validation(loginJoiSchema), ctrlWrapper(ctrl.login));
 router.patch(
   "/subscription",
   auth,
   validation(subscriptionJoiSchema),
-  ctrlWrapper(ctrl.register)
+  ctrlWrapper(ctrl.updateSubscription)
 );
 
-router.post("/logout", auth, ctrlWrapper(ctrl.register));
-router.get("/current", auth, ctrlWrapper(ctrl.register));
+router.post("/logout", auth, ctrlWrapper(ctrl.logout));
+router.get("/current", auth, ctrlWrapper(ctrl.current));
 
 module.exports = router;
