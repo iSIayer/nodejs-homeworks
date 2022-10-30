@@ -16,4 +16,4 @@ mongoose
     process.exit(1);
   });
 
-// Working server database
+// Start hw-04
