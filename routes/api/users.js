@@ -22,7 +22,7 @@ router.post("/logout", auth, ctrlWrapper(ctrl.logout));
 router.get("/current", auth, ctrlWrapper(ctrl.current));
 
 router.patch(
-  "/users/avatars",
+  "/avatars",
   auth,
   upload.single("avatar"),
   ctrlWrapper(ctrl.updateAvatar)
