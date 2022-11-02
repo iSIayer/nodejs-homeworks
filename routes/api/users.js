@@ -21,4 +21,6 @@ router.patch(
 router.post("/logout", auth, ctrlWrapper(ctrl.logout));
 router.get("/current", auth, ctrlWrapper(ctrl.current));
 
+router.patch("/users/avatars");
+
 module.exports = router;
