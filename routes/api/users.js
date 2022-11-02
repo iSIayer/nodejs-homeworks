@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { ctrlWrapper, validation, auth } = require("../../middlewars");
+const { ctrlWrapper, validation, auth, upload } = require("../../middlewars");
 const { users: ctrl } = require("../../controllers");
 const {
   signupJoiSchema,
@@ -21,6 +21,11 @@ router.patch(
 router.post("/logout", auth, ctrlWrapper(ctrl.logout));
 router.get("/current", auth, ctrlWrapper(ctrl.current));
 
-router.patch("/users/avatars", auth, ctrlWrapper(ctrl.updateAvatar));
+router.patch(
+  "/users/avatars",
+  auth,
+  upload.single("avatar"),
+  ctrlWrapper(ctrl.updateAvatar)
+);
 
 module.exports = router;
