@@ -7,6 +7,7 @@ const {
   signupJoiSchema,
   loginJoiSchema,
   subscriptionJoiSchema,
+  verifyJoiSchema,
 } = require("../../models/user");
 
 router.post("/signup", validation(signupJoiSchema), ctrlWrapper(ctrl.register));
@@ -29,5 +30,10 @@ router.patch(
 );
 
 router.get("/verify/:verificationToken", ctrlWrapper(ctrl.verifyEmail));
+router.post(
+  "/verify",
+  validation(verifyJoiSchema),
+  ctrlWrapper(ctrl.resendVerifyEmail)
+);
 
 module.exports = router;
