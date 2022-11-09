@@ -1,6 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
+// const sgMail = require("@sendgrid/mail");
 require("dotenv").config();
 
 const usersRouter = require("./routes/api/users");
@@ -9,6 +10,9 @@ const contactsRouter = require("./routes/api/contacts");
 const app = express();
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
+
+// const { SENDGRID_KEY } = process.env;
+// sgMail.setApiKey(SENDGRID_KEY);
 
 app.use(logger(formatsLogger));
 app.use(cors());
@@ -28,4 +32,4 @@ app.use((err, req, res, next) => {
 
 module.exports = app;
 
-// start hw-05
+// start hw-06
